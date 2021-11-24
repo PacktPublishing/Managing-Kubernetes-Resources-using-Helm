@@ -1,2 +1,4 @@
+# chapterNumber represents the current chapter number
 chapterNumber: 6
+# chapterName represents the name of the current chapter
 chapterName: Understanding Helm Templates
