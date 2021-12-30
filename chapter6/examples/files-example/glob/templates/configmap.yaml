@@ -4,4 +4,3 @@ metadata:
   name: {{ .Release.Name }}
 data:
 {{ (.Files.Glob "files/chapter*").AsConfig | indent 2 }}
-{{ (.Files.Glob "files/secret*").AsSecrets | indent 2 }}
