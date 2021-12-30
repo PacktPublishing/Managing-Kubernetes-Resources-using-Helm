@@ -4,6 +4,4 @@ metadata:
   name: {{ .Release.Name }}
 data:
   config.properties: |-
-    chapterNumber={{ .Values.chapterNumber }}
-    chapterName={{ .Values.chapterName }}
     namespace={{ .Release.Namespace }}
