@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}
 data:
   config.properties: |-
-    {{ .Files.Get "files/config.yaml" }}
+    {{ .Files.Get "files/config.properties" }}
