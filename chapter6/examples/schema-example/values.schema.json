@@ -26,7 +26,7 @@
            "properties": {
              "type": {
                "type": "string",
-               "enum": ["ClusterIP", "LoadBalancer"]
+               "enum": ["ClusterIP", "NodePort"]
              },
              "port": {
                "type": "integer",
