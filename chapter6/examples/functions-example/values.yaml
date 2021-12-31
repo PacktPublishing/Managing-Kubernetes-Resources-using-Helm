@@ -1,0 +1,9 @@
+---
+annotations:
+  publisher: "Packt Publishing"
+  title: "Managing Kubernetes Resources Using Helm"
+fs:
+  path: /var/props/../configs/my app/config.cfg
+book:
+  chapterNumber: 6
+  chapterName: Understanding Helm Templates
