@@ -2,10 +2,23 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+redis:
+  fullnameOverride: redis
+  auth:
+    enabled: false
+
+env:
+  - name: GET_HOSTS_FROM
+    value: env
+  - name: REDIS_LEADER_SERVICE_HOST
+    value: redis-master
+  - name: REDIS_FOLLOWER_SERVICE_HOST
+    value: redis-replicas
+
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: gcr.io/google_samples/gb-frontend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
