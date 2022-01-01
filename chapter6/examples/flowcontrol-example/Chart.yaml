@@ -1,0 +1,5 @@
+apiVersion: v2
+name: flowcontrol-example
+description: A Helm chart for Kubernetes that
+version: 0.1.0
+appVersion: 0.1.0

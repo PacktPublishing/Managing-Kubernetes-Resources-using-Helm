@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+data:
+{{- with .Values.book.chapter6.props }} 
+  chapterNumber: {{ .chapterNumber }}
+  chapterName: {{ .chapterName }}
+{{- end }} 
