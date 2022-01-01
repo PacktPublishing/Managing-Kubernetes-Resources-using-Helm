@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thisCanBeAnything
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx
+          env:
+            - name: ENVIRONMENT
+              value: dev

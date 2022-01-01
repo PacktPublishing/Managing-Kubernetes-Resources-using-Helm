@@ -1,0 +1,11 @@
+resources:
+  - all.yaml
+patches:
+  - path: dev_env.yaml
+    target:
+      kind: Deployment
+      name: ".*"
+  - path: nodeport.yaml
+    target:
+      kind: Service
+      name: ".*"
