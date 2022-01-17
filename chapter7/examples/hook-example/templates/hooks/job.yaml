@@ -1,0 +1,18 @@
+apiVersion: batch/v1 
+kind: Job 
+metadata: 
+  name: {{ .Release.Name }}-hook
+  annotations: 
+    "helm.sh/hook": post-install 
+spec: 
+  template: 
+    metadata: 
+      name: {{ .Release.Name }}-hook
+    spec: 
+      restartPolicy: Never 
+      containers: 
+      - name: {{ .Release.Name }}-hook
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "Hook executed at $(date)"
+        image: alpine
