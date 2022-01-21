@@ -6,6 +6,10 @@ redis:
   fullnameOverride: redis
   auth:
     enabled: false
+  # Disable AOF persistence for the backup/restore hook
+  master:
+    configuration: |-
+      appendonly no
 
 env:
   - name: GET_HOSTS_FROM
