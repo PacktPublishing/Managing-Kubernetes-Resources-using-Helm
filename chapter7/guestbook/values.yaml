@@ -7,9 +7,8 @@ redis:
   auth:
     enabled: false
   # Disable AOF persistence for the backup/restore hook
-  master:
-    configuration: |-
-      appendonly no
+  commonConfiguration:
+    appendonly no
 
 env:
   - name: GET_HOSTS_FROM

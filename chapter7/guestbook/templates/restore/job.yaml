@@ -8,11 +8,14 @@ metadata:
   annotations:
     "helm.sh/hook": pre-rollback
     "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "2"
 spec:
   template:
     spec:
-      containers:
-        - name: backup
+      serviceAccountName: {{ include "guestbook.fullname" . }}-rollout
+      initContainers:
+        ## This will reload the master's database with the backup dump.rdb file
+        - name: restore-master-state
           image: redis:alpine3.15
           command: ["/bin/sh", "-c"]
           args:
@@ -24,6 +27,14 @@ spec:
               mountPath: /data
             - name: backup
               mountPath: /backup
+      containers:
+        ## This will roll out new Replica pods
+        - name: rollout-new-replicas
+          image: bitnami/kubectl
+          command: ["/bin/sh", "-c"]
+          args:
+            - |-
+              kubectl rollout restart statefulset {{ .Values.redis.fullnameOverride }}-replicas
       restartPolicy: Never
       volumes:
         - name: redis-data
