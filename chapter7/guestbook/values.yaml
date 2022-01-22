@@ -9,6 +9,9 @@ redis:
   # Disable AOF persistence for the backup/restore hook
   commonConfiguration:
     appendonly no
+  replica:
+    persistence:
+      enabled: false
 
 env:
   - name: GET_HOSTS_FROM
