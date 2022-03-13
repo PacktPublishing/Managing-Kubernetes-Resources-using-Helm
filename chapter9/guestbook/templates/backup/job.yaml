@@ -1,0 +1,36 @@
+{{- if .Values.redis.master.persistence.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "guestbook.fullname" . }}-{{ .Values.redis.fullnameOverride }}-backup-{{ sub .Release.Revision 1 }}
+  labels:
+    {{- include "guestbook.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: backup
+          image: redis:alpine3.15
+          command: ["/bin/sh", "-c"]
+          args:
+            - |-
+              redis-cli -h {{ .Values.redis.fullnameOverride }}-master save
+              cp /data/dump.rdb /backup/dump.rdb
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: backup
+              mountPath: /backup
+      restartPolicy: Never
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data-{{ .Values.redis.fullnameOverride }}-master-0
+        - name: backup
+          persistentVolumeClaim:
+            claimName: {{ include "guestbook.fullname" . }}-{{ .Values.redis.fullnameOverride }}-backup-{{ sub .Release.Revision 1 }}
+{{- end }}
