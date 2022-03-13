@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "empty-chart-yaml.fullname" . }}
+  labels:
+    {{- include "empty-chart-yaml.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "empty-chart-yaml.selectorLabels" . | nindent 4 }}
