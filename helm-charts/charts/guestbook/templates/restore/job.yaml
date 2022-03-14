@@ -1,0 +1,46 @@
+{{- if .Values.redis.master.persistence.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "guestbook.fullname" . }}-{{ .Values.redis.fullnameOverride }}-restore-{{ .Release.Revision }}
+  labels:
+    {{- include "guestbook.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-rollback
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "2"
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ include "guestbook.fullname" . }}-rollout
+      initContainers:
+        ## This will reload the master's database with the backup dump.rdb file
+        - name: restore-master-state
+          image: redis:alpine3.15
+          command: ["/bin/sh", "-c"]
+          args:
+            - |-
+              cp /backup/dump.rdb /data/dump.rdb
+              redis-cli -h {{ .Values.redis.fullnameOverride }}-master debug reload nosave
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: backup
+              mountPath: /backup
+      containers:
+        ## This will roll out new Replica pods
+        - name: rollout-new-replicas
+          image: bitnami/kubectl
+          command: ["/bin/sh", "-c"]
+          args:
+            - |-
+              kubectl rollout restart statefulset {{ .Values.redis.fullnameOverride }}-replicas
+      restartPolicy: Never
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data-{{ .Values.redis.fullnameOverride }}-master-0
+        - name: backup
+          persistentVolumeClaim:
+            claimName: {{ include "guestbook.fullname" . }}-{{ .Values.redis.fullnameOverride }}-backup-{{ .Release.Revision }}
+{{- end }}
