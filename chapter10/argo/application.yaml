@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: helm-charts/charts/nginx/
+    repoURL: https://github.com/PacktPublishing/Managing-Kubernetes-Resources-using-Helm.git
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chapter10
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
