@@ -11,6 +11,15 @@ spec:
     chart: nginx
     targetRevision: 9.7.6
     repoURL: https://charts.bitnami.com/bitnami
+    helm:
+      values: |-
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: chapter10
