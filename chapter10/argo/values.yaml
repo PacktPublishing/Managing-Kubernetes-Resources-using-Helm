@@ -5,8 +5,5 @@ server:
 dex:
   enabled: false
 
-applicationSet:
-  enabled: false
-
 notifications:
   enabled: false
