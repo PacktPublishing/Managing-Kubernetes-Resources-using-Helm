@@ -11,6 +11,15 @@ spec:
     path: helm-charts/charts/nginx/
     repoURL: https://github.com/PacktPublishing/Managing-Kubernetes-Resources-using-Helm.git
     targetRevision: HEAD
+    helm:
+      values: |-
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: chapter10
