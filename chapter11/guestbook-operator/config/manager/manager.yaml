@@ -29,7 +29,7 @@ spec:
       containers:
       - args:
         - --leader-elect
-        - --leader-election-id=chapter11
+        - --leader-election-id=guestbook-operator
         image: controller:latest
         name: manager
         securityContext:
