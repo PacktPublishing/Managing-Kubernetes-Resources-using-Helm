@@ -1,10 +1,10 @@
 apiVersion: v2
 appVersion: v5
 dependencies:
-- condition: redis.enabled
-  name: redis
-  repository: https://charts.bitnami.com/bitnami
-  version: 15.5.x
+  - condition: redis.enabled
+    name: redis
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+    version: 15.5.x
 description: An application used for keeping a running record of guests
 name: guestbook
 type: application

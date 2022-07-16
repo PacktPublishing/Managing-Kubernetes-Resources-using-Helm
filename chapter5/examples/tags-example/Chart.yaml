@@ -6,13 +6,13 @@ version: 0.1.0
 appVersion: "1.16.0"
 dependencies:
   - name: mariadb
-    repository: https://charts.bitnami.com/bitnami
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
     version: 9.5.0
     tags:
       - backend
       - database
   - name: memcached
-    repository: https://charts.bitnami.com/bitnami
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
     version: 5.15.6
     tags:
       - backend
