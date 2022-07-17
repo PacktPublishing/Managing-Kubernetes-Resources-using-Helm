@@ -10,7 +10,7 @@ spec:
   source:
     chart: nginx
     targetRevision: 9.7.6
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
     helm:
       values: |-
         resources:

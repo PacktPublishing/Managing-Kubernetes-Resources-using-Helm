@@ -2,7 +2,7 @@ chart-dirs:
   - helm-charts/charts
 
 chart-repos:
-  - bitnami=https://charts.bitnami.com/bitnami
+  - bitnami=https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
 
 target-branch: main
 
