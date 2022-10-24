@@ -59,3 +59,7 @@ He is a core maintainer on the Helm project and a Distinguished Architect at Red
 
 **Austin Dewey**
 He is a DevOps engineer focused on delivering a streamlined developer experience on cloud and container technologies. Austin started his career with Red Hat’s consulting organization, where he helped drive success at Fortune 500 companies by automating deployments on Red Hat’s Kubernetes-based PaaS, OpenShift Container Platform. Currently, Austin works at fintech start-up Prime Trust, where he builds automation to scale financial infrastructure and supports developers on Kubernetes and AWS.
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781803242897">https://packt.link/free-ebook/9781803242897 </a> </p>
